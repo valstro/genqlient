@@ -13,7 +13,7 @@ type ListInputQueryResponse struct {
 	//
 	// See UserQueryInput for what stuff is supported.
 	// If query is null, returns the current user.
-	User ListInputQueryUser `json:"user"`
+	User ListInputQueryUser `js:"user" json:"user"`
 }
 
 // GetUser returns ListInputQueryResponse.User, and is useful for accessing the field via an interface.
@@ -27,7 +27,7 @@ type ListInputQueryUser struct {
 	// id is the user's ID.
 	//
 	// It is stable, unique, and opaque, like all good IDs.
-	Id testutil.ID `json:"id"`
+	Id testutil.ID `js:"id" json:"id"`
 }
 
 // GetId returns ListInputQueryUser.Id, and is useful for accessing the field via an interface.
@@ -35,7 +35,7 @@ func (v *ListInputQueryUser) GetId() testutil.ID { return v.Id }
 
 // __ListInputQueryInput is used internally by genqlient
 type __ListInputQueryInput struct {
-	Names []string `json:"names"`
+	Names []string `js:"names" json:"names"`
 }
 
 // GetNames returns __ListInputQueryInput.Names, and is useful for accessing the field via an interface.

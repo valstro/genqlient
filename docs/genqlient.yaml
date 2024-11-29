@@ -29,6 +29,20 @@ operations:
 - genqlient.graphql
 - "pkg/*.go"
 
+# The interface that all operations should implement
+# This interface should have the client attached to it so you would be able to
+# call any function via the client
+#
+# ex: op function: addOrders()
+# func (i_ *Graphql) addOrders()
+#
+# res, err := client.addOrders(inputs)
+#
+#
+# Will remove the need for adding client arg to all op functions
+interfaceImpl:
+  Name: "*Graphql"
+
 # The filename to which to write the generated code, relative to
 # genqlient.yaml. Default: generated.go.
 generated: generated/genqlient.go

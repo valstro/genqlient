@@ -11,7 +11,7 @@ import (
 
 // SimpleSubscriptionResponse is returned by SimpleSubscription on success.
 type SimpleSubscriptionResponse struct {
-	Count int `json:"count"`
+	Count int `js:"count" json:"count"`
 }
 
 // GetCount returns SimpleSubscriptionResponse.Count, and is useful for accessing the field via an interface.

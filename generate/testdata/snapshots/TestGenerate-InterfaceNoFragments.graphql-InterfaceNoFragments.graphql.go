@@ -12,10 +12,10 @@ import (
 
 // InterfaceNoFragmentsQueryRandomItemArticle includes the requested fields of the GraphQL type Article.
 type InterfaceNoFragmentsQueryRandomItemArticle struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceNoFragmentsQueryRandomItemArticle.Typename, and is useful for accessing the field via an interface.
@@ -126,10 +126,10 @@ func __marshalInterfaceNoFragmentsQueryRandomItemContent(v *InterfaceNoFragments
 
 // InterfaceNoFragmentsQueryRandomItemTopic includes the requested fields of the GraphQL type Topic.
 type InterfaceNoFragmentsQueryRandomItemTopic struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceNoFragmentsQueryRandomItemTopic.Typename, and is useful for accessing the field via an interface.
@@ -143,10 +143,10 @@ func (v *InterfaceNoFragmentsQueryRandomItemTopic) GetName() string { return v.N
 
 // InterfaceNoFragmentsQueryRandomItemVideo includes the requested fields of the GraphQL type Video.
 type InterfaceNoFragmentsQueryRandomItemVideo struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceNoFragmentsQueryRandomItemVideo.Typename, and is useful for accessing the field via an interface.
@@ -160,10 +160,10 @@ func (v *InterfaceNoFragmentsQueryRandomItemVideo) GetName() string { return v.N
 
 // InterfaceNoFragmentsQueryRandomItemWithTypeNameArticle includes the requested fields of the GraphQL type Article.
 type InterfaceNoFragmentsQueryRandomItemWithTypeNameArticle struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceNoFragmentsQueryRandomItemWithTypeNameArticle.Typename, and is useful for accessing the field via an interface.
@@ -276,10 +276,10 @@ func __marshalInterfaceNoFragmentsQueryRandomItemWithTypeNameContent(v *Interfac
 
 // InterfaceNoFragmentsQueryRandomItemWithTypeNameTopic includes the requested fields of the GraphQL type Topic.
 type InterfaceNoFragmentsQueryRandomItemWithTypeNameTopic struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceNoFragmentsQueryRandomItemWithTypeNameTopic.Typename, and is useful for accessing the field via an interface.
@@ -295,10 +295,10 @@ func (v *InterfaceNoFragmentsQueryRandomItemWithTypeNameTopic) GetName() string 
 
 // InterfaceNoFragmentsQueryRandomItemWithTypeNameVideo includes the requested fields of the GraphQL type Video.
 type InterfaceNoFragmentsQueryRandomItemWithTypeNameVideo struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceNoFragmentsQueryRandomItemWithTypeNameVideo.Typename, and is useful for accessing the field via an interface.
@@ -314,10 +314,10 @@ func (v *InterfaceNoFragmentsQueryRandomItemWithTypeNameVideo) GetName() string 
 
 // InterfaceNoFragmentsQueryResponse is returned by InterfaceNoFragmentsQuery on success.
 type InterfaceNoFragmentsQueryResponse struct {
-	Root                   InterfaceNoFragmentsQueryRootTopic                     `json:"root"`
-	RandomItem             InterfaceNoFragmentsQueryRandomItemContent             `json:"-"`
-	RandomItemWithTypeName InterfaceNoFragmentsQueryRandomItemWithTypeNameContent `json:"-"`
-	WithPointer            *InterfaceNoFragmentsQueryWithPointerContent           `json:"-"`
+	Root                   InterfaceNoFragmentsQueryRootTopic                     `js:"root" json:"root"`
+	RandomItem             InterfaceNoFragmentsQueryRandomItemContent             `js:"randomItem" json:"-"`
+	RandomItemWithTypeName InterfaceNoFragmentsQueryRandomItemWithTypeNameContent `js:"randomItemWithTypeName" json:"-"`
+	WithPointer            *InterfaceNoFragmentsQueryWithPointerContent           `js:"withPointer" json:"-"`
 }
 
 // GetRoot returns InterfaceNoFragmentsQueryResponse.Root, and is useful for accessing the field via an interface.
@@ -468,8 +468,8 @@ func (v *InterfaceNoFragmentsQueryResponse) __premarshalJSON() (*__premarshalInt
 // InterfaceNoFragmentsQueryRootTopic includes the requested fields of the GraphQL type Topic.
 type InterfaceNoFragmentsQueryRootTopic struct {
 	// ID is documented in the Content interface.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetId returns InterfaceNoFragmentsQueryRootTopic.Id, and is useful for accessing the field via an interface.
@@ -480,10 +480,10 @@ func (v *InterfaceNoFragmentsQueryRootTopic) GetName() string { return v.Name }
 
 // InterfaceNoFragmentsQueryWithPointerArticle includes the requested fields of the GraphQL type Article.
 type InterfaceNoFragmentsQueryWithPointerArticle struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   *testutil.ID `json:"id"`
-	Name *string      `json:"name"`
+	Id   *testutil.ID `js:"id" json:"id"`
+	Name *string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceNoFragmentsQueryWithPointerArticle.Typename, and is useful for accessing the field via an interface.
@@ -594,10 +594,10 @@ func __marshalInterfaceNoFragmentsQueryWithPointerContent(v *InterfaceNoFragment
 
 // InterfaceNoFragmentsQueryWithPointerTopic includes the requested fields of the GraphQL type Topic.
 type InterfaceNoFragmentsQueryWithPointerTopic struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   *testutil.ID `json:"id"`
-	Name *string      `json:"name"`
+	Id   *testutil.ID `js:"id" json:"id"`
+	Name *string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceNoFragmentsQueryWithPointerTopic.Typename, and is useful for accessing the field via an interface.
@@ -611,10 +611,10 @@ func (v *InterfaceNoFragmentsQueryWithPointerTopic) GetName() *string { return v
 
 // InterfaceNoFragmentsQueryWithPointerVideo includes the requested fields of the GraphQL type Video.
 type InterfaceNoFragmentsQueryWithPointerVideo struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   *testutil.ID `json:"id"`
-	Name *string      `json:"name"`
+	Id   *testutil.ID `js:"id" json:"id"`
+	Name *string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceNoFragmentsQueryWithPointerVideo.Typename, and is useful for accessing the field via an interface.

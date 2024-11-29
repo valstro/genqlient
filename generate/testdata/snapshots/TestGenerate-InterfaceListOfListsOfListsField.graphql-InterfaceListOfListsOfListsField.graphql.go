@@ -109,10 +109,10 @@ func __marshalInterfaceListOfListOfListsFieldListOfListsOfListsOfContent(v *Inte
 
 // InterfaceListOfListOfListsFieldListOfListsOfListsOfContentArticle includes the requested fields of the GraphQL type Article.
 type InterfaceListOfListOfListsFieldListOfListsOfListsOfContentArticle struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceListOfListOfListsFieldListOfListsOfListsOfContentArticle.Typename, and is useful for accessing the field via an interface.
@@ -132,10 +132,10 @@ func (v *InterfaceListOfListOfListsFieldListOfListsOfListsOfContentArticle) GetN
 
 // InterfaceListOfListOfListsFieldListOfListsOfListsOfContentTopic includes the requested fields of the GraphQL type Topic.
 type InterfaceListOfListOfListsFieldListOfListsOfListsOfContentTopic struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceListOfListOfListsFieldListOfListsOfListsOfContentTopic.Typename, and is useful for accessing the field via an interface.
@@ -155,10 +155,10 @@ func (v *InterfaceListOfListOfListsFieldListOfListsOfListsOfContentTopic) GetNam
 
 // InterfaceListOfListOfListsFieldListOfListsOfListsOfContentVideo includes the requested fields of the GraphQL type Video.
 type InterfaceListOfListOfListsFieldListOfListsOfListsOfContentVideo struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceListOfListOfListsFieldListOfListsOfListsOfContentVideo.Typename, and is useful for accessing the field via an interface.
@@ -178,8 +178,8 @@ func (v *InterfaceListOfListOfListsFieldListOfListsOfListsOfContentVideo) GetNam
 
 // InterfaceListOfListOfListsFieldResponse is returned by InterfaceListOfListOfListsField on success.
 type InterfaceListOfListOfListsFieldResponse struct {
-	ListOfListsOfListsOfContent [][][]InterfaceListOfListOfListsFieldListOfListsOfListsOfContent `json:"-"`
-	WithPointer                 [][][]*InterfaceListOfListOfListsFieldWithPointerContent         `json:"-"`
+	ListOfListsOfListsOfContent [][][]InterfaceListOfListOfListsFieldListOfListsOfListsOfContent `js:"listOfListsOfListsOfContent" json:"-"`
+	WithPointer                 [][][]*InterfaceListOfListOfListsFieldWithPointerContent         `js:"withPointer" json:"-"`
 }
 
 // GetListOfListsOfListsOfContent returns InterfaceListOfListOfListsFieldResponse.ListOfListsOfListsOfContent, and is useful for accessing the field via an interface.
@@ -360,10 +360,10 @@ func (v *InterfaceListOfListOfListsFieldResponse) __premarshalJSON() (*__premars
 
 // InterfaceListOfListOfListsFieldWithPointerArticle includes the requested fields of the GraphQL type Article.
 type InterfaceListOfListOfListsFieldWithPointerArticle struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   *testutil.ID `json:"id"`
-	Name *string      `json:"name"`
+	Id   *testutil.ID `js:"id" json:"id"`
+	Name *string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceListOfListOfListsFieldWithPointerArticle.Typename, and is useful for accessing the field via an interface.
@@ -474,10 +474,10 @@ func __marshalInterfaceListOfListOfListsFieldWithPointerContent(v *InterfaceList
 
 // InterfaceListOfListOfListsFieldWithPointerTopic includes the requested fields of the GraphQL type Topic.
 type InterfaceListOfListOfListsFieldWithPointerTopic struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   *testutil.ID `json:"id"`
-	Name *string      `json:"name"`
+	Id   *testutil.ID `js:"id" json:"id"`
+	Name *string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceListOfListOfListsFieldWithPointerTopic.Typename, and is useful for accessing the field via an interface.
@@ -491,10 +491,10 @@ func (v *InterfaceListOfListOfListsFieldWithPointerTopic) GetName() *string { re
 
 // InterfaceListOfListOfListsFieldWithPointerVideo includes the requested fields of the GraphQL type Video.
 type InterfaceListOfListOfListsFieldWithPointerVideo struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   *testutil.ID `json:"id"`
-	Name *string      `json:"name"`
+	Id   *testutil.ID `js:"id" json:"id"`
+	Name *string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceListOfListOfListsFieldWithPointerVideo.Typename, and is useful for accessing the field via an interface.

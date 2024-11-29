@@ -11,7 +11,7 @@ import (
 
 // UnionNoFragmentsQueryRandomLeafArticle includes the requested fields of the GraphQL type Article.
 type UnionNoFragmentsQueryRandomLeafArticle struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 }
 
 // GetTypename returns UnionNoFragmentsQueryRandomLeafArticle.Typename, and is useful for accessing the field via an interface.
@@ -95,7 +95,7 @@ func __marshalUnionNoFragmentsQueryRandomLeafLeafContent(v *UnionNoFragmentsQuer
 
 // UnionNoFragmentsQueryRandomLeafVideo includes the requested fields of the GraphQL type Video.
 type UnionNoFragmentsQueryRandomLeafVideo struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 }
 
 // GetTypename returns UnionNoFragmentsQueryRandomLeafVideo.Typename, and is useful for accessing the field via an interface.
@@ -103,7 +103,7 @@ func (v *UnionNoFragmentsQueryRandomLeafVideo) GetTypename() string { return v.T
 
 // UnionNoFragmentsQueryResponse is returned by UnionNoFragmentsQuery on success.
 type UnionNoFragmentsQueryResponse struct {
-	RandomLeaf UnionNoFragmentsQueryRandomLeafLeafContent `json:"-"`
+	RandomLeaf UnionNoFragmentsQueryRandomLeafLeafContent `js:"randomLeaf" json:"-"`
 }
 
 // GetRandomLeaf returns UnionNoFragmentsQueryResponse.RandomLeaf, and is useful for accessing the field via an interface.

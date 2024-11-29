@@ -36,14 +36,14 @@ var AllRole = []Role{
 // Or maybe ideally it wouldn't.
 // Really I'm just talking to make this documentation longer.
 type UserQueryInput struct {
-	Email string `json:"email"`
-	Name  string `json:"name"`
+	Email string `js:"email" json:"email"`
+	Name  string `js:"name" json:"name"`
 	// id looks the user up by ID.  It's a great way to look up users.
-	Id         testutil.ID      `json:"id"`
-	Role       Role             `json:"role"`
-	Names      []string         `json:"names"`
-	HasPokemon testutil.Pokemon `json:"hasPokemon"`
-	Birthdate  time.Time        `json:"-"`
+	Id         testutil.ID      `js:"id" json:"id"`
+	Role       Role             `js:"role" json:"role"`
+	Names      []string         `js:"names" json:"names"`
+	HasPokemon testutil.Pokemon `js:"hasPokemon" json:"hasPokemon"`
+	Birthdate  time.Time        `js:"birthdate" json:"-"`
 }
 
 // GetEmail returns UserQueryInput.Email, and is useful for accessing the field via an interface.
@@ -150,7 +150,7 @@ func (v *UserQueryInput) __premarshalJSON() (*__premarshalUserQueryInput, error)
 
 // __unexportedInput is used internally by genqlient
 type __unexportedInput struct {
-	Query UserQueryInput `json:"query"`
+	Query UserQueryInput `js:"query" json:"query"`
 }
 
 // GetQuery returns __unexportedInput.Query, and is useful for accessing the field via an interface.
@@ -162,7 +162,7 @@ type unexportedResponse struct {
 	//
 	// See UserQueryInput for what stuff is supported.
 	// If query is null, returns the current user.
-	User unexportedUser `json:"user"`
+	User unexportedUser `js:"user" json:"user"`
 }
 
 // GetUser returns unexportedResponse.User, and is useful for accessing the field via an interface.
@@ -176,7 +176,7 @@ type unexportedUser struct {
 	// id is the user's ID.
 	//
 	// It is stable, unique, and opaque, like all good IDs.
-	Id testutil.ID `json:"id"`
+	Id testutil.ID `js:"id" json:"id"`
 }
 
 // GetId returns unexportedUser.Id, and is useful for accessing the field via an interface.

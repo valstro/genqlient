@@ -8,15 +8,15 @@ import (
 
 // OmitemptyFalseResponse is returned by OmitemptyFalse on success.
 type OmitemptyFalseResponse struct {
-	Omitempty bool `json:"omitempty"`
+	Omitempty bool `js:"omitempty" json:"omitempty"`
 }
 
 // GetOmitempty returns OmitemptyFalseResponse.Omitempty, and is useful for accessing the field via an interface.
 func (v *OmitemptyFalseResponse) GetOmitempty() bool { return v.Omitempty }
 
 type OmitemptyInput struct {
-	Field         string `json:"field"`
-	NullableField string `json:"nullableField,omitempty"`
+	Field         string `js:"field" json:"field"`
+	NullableField string `js:"nullableField" json:"nullableField,omitempty"`
 }
 
 // GetField returns OmitemptyInput.Field, and is useful for accessing the field via an interface.
@@ -27,7 +27,7 @@ func (v *OmitemptyInput) GetNullableField() string { return v.NullableField }
 
 // __OmitemptyFalseInput is used internally by genqlient
 type __OmitemptyFalseInput struct {
-	Input OmitemptyInput `json:"input,omitempty"`
+	Input OmitemptyInput `js:"input" json:"input,omitempty"`
 }
 
 // GetInput returns __OmitemptyFalseInput.Input, and is useful for accessing the field via an interface.

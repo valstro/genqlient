@@ -12,11 +12,11 @@ import (
 
 // SimpleInlineFragmentRandomItemArticle includes the requested fields of the GraphQL type Article.
 type SimpleInlineFragmentRandomItemArticle struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
-	Text string      `json:"text"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
+	Text string      `js:"text" json:"text"`
 }
 
 // GetTypename returns SimpleInlineFragmentRandomItemArticle.Typename, and is useful for accessing the field via an interface.
@@ -130,10 +130,10 @@ func __marshalSimpleInlineFragmentRandomItemContent(v *SimpleInlineFragmentRando
 
 // SimpleInlineFragmentRandomItemTopic includes the requested fields of the GraphQL type Topic.
 type SimpleInlineFragmentRandomItemTopic struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns SimpleInlineFragmentRandomItemTopic.Typename, and is useful for accessing the field via an interface.
@@ -147,11 +147,11 @@ func (v *SimpleInlineFragmentRandomItemTopic) GetName() string { return v.Name }
 
 // SimpleInlineFragmentRandomItemVideo includes the requested fields of the GraphQL type Video.
 type SimpleInlineFragmentRandomItemVideo struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id       testutil.ID `json:"id"`
-	Name     string      `json:"name"`
-	Duration int         `json:"duration"`
+	Id       testutil.ID `js:"id" json:"id"`
+	Name     string      `js:"name" json:"name"`
+	Duration int         `js:"duration" json:"duration"`
 }
 
 // GetTypename returns SimpleInlineFragmentRandomItemVideo.Typename, and is useful for accessing the field via an interface.
@@ -168,7 +168,7 @@ func (v *SimpleInlineFragmentRandomItemVideo) GetDuration() int { return v.Durat
 
 // SimpleInlineFragmentResponse is returned by SimpleInlineFragment on success.
 type SimpleInlineFragmentResponse struct {
-	RandomItem SimpleInlineFragmentRandomItemContent `json:"-"`
+	RandomItem SimpleInlineFragmentRandomItemContent `js:"randomItem" json:"-"`
 }
 
 // GetRandomItem returns SimpleInlineFragmentResponse.RandomItem, and is useful for accessing the field via an interface.

@@ -8,15 +8,15 @@ import (
 
 // DefaultInputsResponse is returned by DefaultInputs on success.
 type DefaultInputsResponse struct {
-	Default bool `json:"default"`
+	Default bool `js:"default" json:"default"`
 }
 
 // GetDefault returns DefaultInputsResponse.Default, and is useful for accessing the field via an interface.
 func (v *DefaultInputsResponse) GetDefault() bool { return v.Default }
 
 type InputWithDefaults struct {
-	Field         string `json:"field,omitempty"`
-	NullableField string `json:"nullableField,omitempty"`
+	Field         string `js:"field" json:"field,omitempty"`
+	NullableField string `js:"nullableField" json:"nullableField,omitempty"`
 }
 
 // GetField returns InputWithDefaults.Field, and is useful for accessing the field via an interface.
@@ -27,7 +27,7 @@ func (v *InputWithDefaults) GetNullableField() string { return v.NullableField }
 
 // __DefaultInputsInput is used internally by genqlient
 type __DefaultInputsInput struct {
-	Input InputWithDefaults `json:"input,omitempty"`
+	Input InputWithDefaults `js:"input" json:"input,omitempty"`
 }
 
 // GetInput returns __DefaultInputsInput.Input, and is useful for accessing the field via an interface.

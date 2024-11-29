@@ -15,7 +15,7 @@ type ListInputQueryResponse struct {
 	//
 	// See UserQueryInput for what stuff is supported.
 	// If query is null, returns the current user.
-	User testutil.Option[ListInputQueryUser] `json:"user"`
+	User testutil.Option[ListInputQueryUser] `js:"user" json:"user"`
 }
 
 // GetUser returns ListInputQueryResponse.User, and is useful for accessing the field via an interface.
@@ -29,7 +29,7 @@ type ListInputQueryUser struct {
 	// id is the user's ID.
 	//
 	// It is stable, unique, and opaque, like all good IDs.
-	Id string `json:"id"`
+	Id string `js:"id" json:"id"`
 }
 
 // GetId returns ListInputQueryUser.Id, and is useful for accessing the field via an interface.
@@ -41,7 +41,7 @@ type QueryWithSlicesResponse struct {
 	//
 	// See UserQueryInput for what stuff is supported.
 	// If query is null, returns the current user.
-	User testutil.Option[QueryWithSlicesUser] `json:"user"`
+	User testutil.Option[QueryWithSlicesUser] `js:"user" json:"user"`
 }
 
 // GetUser returns QueryWithSlicesResponse.User, and is useful for accessing the field via an interface.
@@ -52,10 +52,10 @@ func (v *QueryWithSlicesResponse) GetUser() testutil.Option[QueryWithSlicesUser]
 //
 // A User is a user!
 type QueryWithSlicesUser struct {
-	Emails                []string                  `json:"emails"`
-	EmailsOrNull          []string                  `json:"emailsOrNull"`
-	EmailsWithNulls       []testutil.Option[string] `json:"emailsWithNulls"`
-	EmailsWithNullsOrNull []testutil.Option[string] `json:"emailsWithNullsOrNull"`
+	Emails                []string                  `js:"emails" json:"emails"`
+	EmailsOrNull          []string                  `js:"emailsOrNull" json:"emailsOrNull"`
+	EmailsWithNulls       []testutil.Option[string] `js:"emailsWithNulls" json:"emailsWithNulls"`
+	EmailsWithNullsOrNull []testutil.Option[string] `js:"emailsWithNullsOrNull" json:"emailsWithNullsOrNull"`
 }
 
 // GetEmails returns QueryWithSlicesUser.Emails, and is useful for accessing the field via an interface.
@@ -76,7 +76,7 @@ func (v *QueryWithSlicesUser) GetEmailsWithNullsOrNull() []testutil.Option[strin
 
 // __ListInputQueryInput is used internally by genqlient
 type __ListInputQueryInput struct {
-	Names []testutil.Option[string] `json:"names"`
+	Names []testutil.Option[string] `js:"names" json:"names"`
 }
 
 // GetNames returns __ListInputQueryInput.Names, and is useful for accessing the field via an interface.

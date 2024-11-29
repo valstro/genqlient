@@ -9,6 +9,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/Khan/genqlient/graphql"
 	"github.com/Khan/genqlient/internal/testutil"
 	"gopkg.in/yaml.v2"
 )
@@ -139,6 +140,10 @@ func getDefaultConfig(t *testing.T) *Config {
 	return &config
 }
 
+type Graphql struct {
+	client graphql.Client
+}
+
 // TestGenerateWithConfig tests several configuration options that affect
 // generated code but don't require particular query structures to test.
 //
@@ -242,6 +247,13 @@ func TestGenerateWithConfig(t *testing.T) {
 		{
 			"UseStructReference", "", []string{"UseStructReference.graphql"}, &Config{
 				StructReferences: true,
+			},
+		},
+		{
+			"InterfaceImpl", "", nil, &Config{
+				InterfaceImpl: InterfaceImpl{
+					Name: "*graphql.Client",
+				},
 			},
 		},
 	}

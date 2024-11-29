@@ -13,7 +13,7 @@ type QueryWithAliasResponse struct {
 	//
 	// See UserQueryInput for what stuff is supported.
 	// If query is null, returns the current user.
-	User QueryWithAliasUser `json:"User"`
+	User QueryWithAliasUser `js:"User" json:"User"`
 }
 
 // GetUser returns QueryWithAliasResponse.User, and is useful for accessing the field via an interface.
@@ -27,11 +27,11 @@ type QueryWithAliasUser struct {
 	// id is the user's ID.
 	//
 	// It is stable, unique, and opaque, like all good IDs.
-	ID testutil.ID `json:"ID"`
+	ID testutil.ID `js:"ID" json:"ID"`
 	// id is the user's ID.
 	//
 	// It is stable, unique, and opaque, like all good IDs.
-	OtherID testutil.ID `json:"otherID"`
+	OtherID testutil.ID `js:"otherID" json:"otherID"`
 }
 
 // GetID returns QueryWithAliasUser.ID, and is useful for accessing the field via an interface.

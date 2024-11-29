@@ -3,6 +3,8 @@
 package queries
 
 import (
+	"context"
+
 	"github.com/Khan/genqlient/graphql"
 )
 
@@ -41,19 +43,21 @@ query SimpleQuery {
 }
 `
 
-func SimpleQuery(
-	client_ graphql.Client,
+func (i_ *graphql.Client) SimpleQuery(
+	ctx_ context.Context,
 ) (data_ *SimpleQueryResponse, err_ error) {
 	req_ := &graphql.Request{
 		OpName: "SimpleQuery",
 		Query:  SimpleQuery_Operation,
 	}
 
+	client_ := i_.client
+
 	data_ = &SimpleQueryResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
-		nil,
+		ctx_,
 		req_,
 		resp_,
 	)

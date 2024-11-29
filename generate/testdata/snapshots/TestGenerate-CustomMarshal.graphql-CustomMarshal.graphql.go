@@ -13,7 +13,7 @@ import (
 
 // CustomMarshalResponse is returned by CustomMarshal on success.
 type CustomMarshalResponse struct {
-	UsersBornOn []CustomMarshalUsersBornOnUser `json:"usersBornOn"`
+	UsersBornOn []CustomMarshalUsersBornOnUser `js:"usersBornOn" json:"usersBornOn"`
 }
 
 // GetUsersBornOn returns CustomMarshalResponse.UsersBornOn, and is useful for accessing the field via an interface.
@@ -27,8 +27,8 @@ type CustomMarshalUsersBornOnUser struct {
 	// id is the user's ID.
 	//
 	// It is stable, unique, and opaque, like all good IDs.
-	Id        testutil.ID `json:"id"`
-	Birthdate time.Time   `json:"-"`
+	Id        testutil.ID `js:"id" json:"id"`
+	Birthdate time.Time   `js:"birthdate" json:"-"`
 }
 
 // GetId returns CustomMarshalUsersBornOnUser.Id, and is useful for accessing the field via an interface.
@@ -105,7 +105,7 @@ func (v *CustomMarshalUsersBornOnUser) __premarshalJSON() (*__premarshalCustomMa
 
 // __CustomMarshalInput is used internally by genqlient
 type __CustomMarshalInput struct {
-	Date time.Time `json:"-"`
+	Date time.Time `js:"date" json:"-"`
 }
 
 // GetDate returns __CustomMarshalInput.Date, and is useful for accessing the field via an interface.

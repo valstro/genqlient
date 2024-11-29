@@ -12,7 +12,7 @@ import (
 
 // InterfaceNestingResponse is returned by InterfaceNesting on success.
 type InterfaceNestingResponse struct {
-	Root InterfaceNestingRootTopic `json:"root"`
+	Root InterfaceNestingRootTopic `js:"root" json:"root"`
 }
 
 // GetRoot returns InterfaceNestingResponse.Root, and is useful for accessing the field via an interface.
@@ -21,8 +21,8 @@ func (v *InterfaceNestingResponse) GetRoot() InterfaceNestingRootTopic { return 
 // InterfaceNestingRootTopic includes the requested fields of the GraphQL type Topic.
 type InterfaceNestingRootTopic struct {
 	// ID is documented in the Content interface.
-	Id       testutil.ID                                `json:"id"`
-	Children []InterfaceNestingRootTopicChildrenContent `json:"-"`
+	Id       testutil.ID                                `js:"id" json:"id"`
+	Children []InterfaceNestingRootTopicChildrenContent `js:"children" json:"-"`
 }
 
 // GetId returns InterfaceNestingRootTopic.Id, and is useful for accessing the field via an interface.
@@ -113,10 +113,10 @@ func (v *InterfaceNestingRootTopic) __premarshalJSON() (*__premarshalInterfaceNe
 
 // InterfaceNestingRootTopicChildrenArticle includes the requested fields of the GraphQL type Article.
 type InterfaceNestingRootTopicChildrenArticle struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id     testutil.ID                                         `json:"id"`
-	Parent InterfaceNestingRootTopicChildrenContentParentTopic `json:"parent"`
+	Id     testutil.ID                                         `js:"id" json:"id"`
+	Parent InterfaceNestingRootTopicChildrenContentParentTopic `js:"parent" json:"parent"`
 }
 
 // GetTypename returns InterfaceNestingRootTopicChildrenArticle.Typename, and is useful for accessing the field via an interface.
@@ -230,8 +230,8 @@ func __marshalInterfaceNestingRootTopicChildrenContent(v *InterfaceNestingRootTo
 // InterfaceNestingRootTopicChildrenContentParentTopic includes the requested fields of the GraphQL type Topic.
 type InterfaceNestingRootTopicChildrenContentParentTopic struct {
 	// ID is documented in the Content interface.
-	Id       testutil.ID                                                          `json:"id"`
-	Children []InterfaceNestingRootTopicChildrenContentParentTopicChildrenContent `json:"-"`
+	Id       testutil.ID                                                          `js:"id" json:"id"`
+	Children []InterfaceNestingRootTopicChildrenContentParentTopicChildrenContent `js:"children" json:"-"`
 }
 
 // GetId returns InterfaceNestingRootTopicChildrenContentParentTopic.Id, and is useful for accessing the field via an interface.
@@ -322,9 +322,9 @@ func (v *InterfaceNestingRootTopicChildrenContentParentTopic) __premarshalJSON()
 
 // InterfaceNestingRootTopicChildrenContentParentTopicChildrenArticle includes the requested fields of the GraphQL type Article.
 type InterfaceNestingRootTopicChildrenContentParentTopicChildrenArticle struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id testutil.ID `json:"id"`
+	Id testutil.ID `js:"id" json:"id"`
 }
 
 // GetTypename returns InterfaceNestingRootTopicChildrenContentParentTopicChildrenArticle.Typename, and is useful for accessing the field via an interface.
@@ -434,9 +434,9 @@ func __marshalInterfaceNestingRootTopicChildrenContentParentTopicChildrenContent
 
 // InterfaceNestingRootTopicChildrenContentParentTopicChildrenTopic includes the requested fields of the GraphQL type Topic.
 type InterfaceNestingRootTopicChildrenContentParentTopicChildrenTopic struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id testutil.ID `json:"id"`
+	Id testutil.ID `js:"id" json:"id"`
 }
 
 // GetTypename returns InterfaceNestingRootTopicChildrenContentParentTopicChildrenTopic.Typename, and is useful for accessing the field via an interface.
@@ -451,9 +451,9 @@ func (v *InterfaceNestingRootTopicChildrenContentParentTopicChildrenTopic) GetId
 
 // InterfaceNestingRootTopicChildrenContentParentTopicChildrenVideo includes the requested fields of the GraphQL type Video.
 type InterfaceNestingRootTopicChildrenContentParentTopicChildrenVideo struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id testutil.ID `json:"id"`
+	Id testutil.ID `js:"id" json:"id"`
 }
 
 // GetTypename returns InterfaceNestingRootTopicChildrenContentParentTopicChildrenVideo.Typename, and is useful for accessing the field via an interface.
@@ -468,10 +468,10 @@ func (v *InterfaceNestingRootTopicChildrenContentParentTopicChildrenVideo) GetId
 
 // InterfaceNestingRootTopicChildrenTopic includes the requested fields of the GraphQL type Topic.
 type InterfaceNestingRootTopicChildrenTopic struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id     testutil.ID                                         `json:"id"`
-	Parent InterfaceNestingRootTopicChildrenContentParentTopic `json:"parent"`
+	Id     testutil.ID                                         `js:"id" json:"id"`
+	Parent InterfaceNestingRootTopicChildrenContentParentTopic `js:"parent" json:"parent"`
 }
 
 // GetTypename returns InterfaceNestingRootTopicChildrenTopic.Typename, and is useful for accessing the field via an interface.
@@ -487,10 +487,10 @@ func (v *InterfaceNestingRootTopicChildrenTopic) GetParent() InterfaceNestingRoo
 
 // InterfaceNestingRootTopicChildrenVideo includes the requested fields of the GraphQL type Video.
 type InterfaceNestingRootTopicChildrenVideo struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id     testutil.ID                                         `json:"id"`
-	Parent InterfaceNestingRootTopicChildrenContentParentTopic `json:"parent"`
+	Id     testutil.ID                                         `js:"id" json:"id"`
+	Parent InterfaceNestingRootTopicChildrenContentParentTopic `js:"parent" json:"parent"`
 }
 
 // GetTypename returns InterfaceNestingRootTopicChildrenVideo.Typename, and is useful for accessing the field via an interface.

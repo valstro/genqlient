@@ -9,7 +9,7 @@ import (
 )
 
 type StructInput struct {
-	Field string `json:"field"`
+	Field string `js:"field" json:"field"`
 }
 
 // GetField returns StructInput.Field, and is useful for accessing the field via an interface.
@@ -17,7 +17,7 @@ func (v *StructInput) GetField() string { return v.Field }
 
 // UseStructReferenceResponse is returned by UseStructReference on success.
 type UseStructReferenceResponse struct {
-	UseStructReferencesInput bool `json:"useStructReferencesInput"`
+	UseStructReferencesInput bool `js:"useStructReferencesInput" json:"useStructReferencesInput"`
 }
 
 // GetUseStructReferencesInput returns UseStructReferenceResponse.UseStructReferencesInput, and is useful for accessing the field via an interface.
@@ -26,11 +26,11 @@ func (v *UseStructReferenceResponse) GetUseStructReferencesInput() bool {
 }
 
 type UseStructReferencesInput struct {
-	Struct         *StructInput   `json:"struct,omitempty"`
-	NullableStruct *StructInput   `json:"nullableStruct,omitempty"`
-	List           []*StructInput `json:"list,omitempty"`
-	ListOfNullable []*StructInput `json:"listOfNullable,omitempty"`
-	NullableList   []*StructInput `json:"nullableList,omitempty"`
+	Struct         *StructInput   `js:"struct" json:"struct,omitempty"`
+	NullableStruct *StructInput   `js:"nullableStruct" json:"nullableStruct,omitempty"`
+	List           []*StructInput `js:"list" json:"list,omitempty"`
+	ListOfNullable []*StructInput `js:"listOfNullable" json:"listOfNullable,omitempty"`
+	NullableList   []*StructInput `js:"nullableList" json:"nullableList,omitempty"`
 }
 
 // GetStruct returns UseStructReferencesInput.Struct, and is useful for accessing the field via an interface.
@@ -50,7 +50,7 @@ func (v *UseStructReferencesInput) GetNullableList() []*StructInput { return v.N
 
 // __UseStructReferenceInput is used internally by genqlient
 type __UseStructReferenceInput struct {
-	Input *UseStructReferencesInput `json:"input,omitempty"`
+	Input *UseStructReferencesInput `js:"input" json:"input,omitempty"`
 }
 
 // GetInput returns __UseStructReferenceInput.Input, and is useful for accessing the field via an interface.

@@ -8,6 +8,9 @@
     (string) (len=46) "testdata/validConfig/second_operations.graphql"
   },
   Generated: (string) (len=33) "testdata/validConfig/generated.go",
+  InterfaceImpl: (generate.InterfaceImpl) {
+    Name: (string) ""
+  },
   Package: (string) (len=11) "validConfig",
   ExportOperations: (string) "",
   ContextType: (string) (len=15) "context.Context",

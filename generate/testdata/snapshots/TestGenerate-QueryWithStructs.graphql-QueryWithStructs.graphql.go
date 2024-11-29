@@ -12,7 +12,7 @@ type QueryWithStructsResponse struct {
 	//
 	// See UserQueryInput for what stuff is supported.
 	// If query is null, returns the current user.
-	User QueryWithStructsUser `json:"user"`
+	User QueryWithStructsUser `js:"user" json:"user"`
 }
 
 // GetUser returns QueryWithStructsResponse.User, and is useful for accessing the field via an interface.
@@ -23,7 +23,7 @@ func (v *QueryWithStructsResponse) GetUser() QueryWithStructsUser { return v.Use
 //
 // A User is a user!
 type QueryWithStructsUser struct {
-	AuthMethods []QueryWithStructsUserAuthMethodsAuthMethod `json:"authMethods"`
+	AuthMethods []QueryWithStructsUserAuthMethodsAuthMethod `js:"authMethods" json:"authMethods"`
 }
 
 // GetAuthMethods returns QueryWithStructsUser.AuthMethods, and is useful for accessing the field via an interface.
@@ -33,8 +33,8 @@ func (v *QueryWithStructsUser) GetAuthMethods() []QueryWithStructsUserAuthMethod
 
 // QueryWithStructsUserAuthMethodsAuthMethod includes the requested fields of the GraphQL type AuthMethod.
 type QueryWithStructsUserAuthMethodsAuthMethod struct {
-	Provider string `json:"provider"`
-	Email    string `json:"email"`
+	Provider string `js:"provider" json:"provider"`
+	Email    string `js:"email" json:"email"`
 }
 
 // GetProvider returns QueryWithStructsUserAuthMethodsAuthMethod.Provider, and is useful for accessing the field via an interface.

@@ -2,11 +2,11 @@
 const {{.Name}}_Operation = `{{$.Body}}`
 
 {{.Doc}}
-func {{.Name}}(
+func {{if .Config.InterfaceImpl.Name}}(i_ {{.Config.InterfaceImpl.Name}}){{else}}{{end}}{{.Name}}(
     {{if ne .Config.ContextType "-" -}}
     ctx_ {{ref .Config.ContextType}},
     {{end}}
-    {{- if not .Config.ClientGetter -}}
+    {{- if and (not .Config.ClientGetter) (not .Config.InterfaceImpl.Name) -}}
     client_ {{if eq .Type "subscription"}}{{ref "github.com/Khan/genqlient/graphql.WebSocketClient"}}{{else}}{{ref "github.com/Khan/genqlient/graphql.Client"}}{{end}},
     {{end}}
     {{- if .Input -}}
@@ -34,7 +34,9 @@ func {{.Name}}(
     if err_ != nil {
         return nil, {{if .Config.Extensions -}}nil,{{end -}} err_
     }
-    {{end}}
+    {{else if .Config.InterfaceImpl.Name }}
+    client_ := i_.client
+    {{end -}}
     {{if eq .Type "subscription"}}
     dataChan_ = make(chan {{.Name}}WsResponse)
     subscriptionID_, err_ = client_.Subscribe(req_, dataChan_, {{.Name}}ForwardData)

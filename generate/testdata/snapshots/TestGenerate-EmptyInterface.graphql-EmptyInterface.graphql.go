@@ -8,8 +8,8 @@ import (
 
 // EmptyInterfaceResponse is returned by EmptyInterface on success.
 type EmptyInterfaceResponse struct {
-	GetJunk        interface{}                             `json:"getJunk"`
-	GetComplexJunk []map[string]*[]*map[string]interface{} `json:"getComplexJunk"`
+	GetJunk        interface{}                             `js:"getJunk" json:"getJunk"`
+	GetComplexJunk []map[string]*[]*map[string]interface{} `js:"getComplexJunk" json:"getComplexJunk"`
 }
 
 // GetGetJunk returns EmptyInterfaceResponse.GetJunk, and is useful for accessing the field via an interface.

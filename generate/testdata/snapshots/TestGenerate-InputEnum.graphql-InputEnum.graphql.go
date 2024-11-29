@@ -10,7 +10,7 @@ import (
 // InputEnumQueryResponse is returned by InputEnumQuery on success.
 type InputEnumQueryResponse struct {
 	// usersWithRole looks a user up by role.
-	UsersWithRole []InputEnumQueryUsersWithRoleUser `json:"usersWithRole"`
+	UsersWithRole []InputEnumQueryUsersWithRoleUser `js:"usersWithRole" json:"usersWithRole"`
 }
 
 // GetUsersWithRole returns InputEnumQueryResponse.UsersWithRole, and is useful for accessing the field via an interface.
@@ -26,7 +26,7 @@ type InputEnumQueryUsersWithRoleUser struct {
 	// id is the user's ID.
 	//
 	// It is stable, unique, and opaque, like all good IDs.
-	Id testutil.ID `json:"id"`
+	Id testutil.ID `js:"id" json:"id"`
 }
 
 // GetId returns InputEnumQueryUsersWithRoleUser.Id, and is useful for accessing the field via an interface.
@@ -53,7 +53,7 @@ var AllRole = []Role{
 
 // __InputEnumQueryInput is used internally by genqlient
 type __InputEnumQueryInput struct {
-	Role Role `json:"role"`
+	Role Role `js:"role" json:"role"`
 }
 
 // GetRole returns __InputEnumQueryInput.Role, and is useful for accessing the field via an interface.

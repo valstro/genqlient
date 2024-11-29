@@ -175,6 +175,7 @@ type goStructType struct {
 type goStructField struct {
 	GoName      string
 	GoType      goType
+	JSName      string // i.e. the feild's js alias in this query
 	JSONName    string // i.e. the field's alias in this query
 	GraphQLName string // i.e. the field's name in its type-def
 	Omitempty   bool   // only used on input types
@@ -399,10 +400,12 @@ func (typ *goStructType) WriteDefinition(w io.Writer, g *generator) error {
 			// certain types are handled in our (Un)MarshalJSON (see below)
 			jsonTag = `"-"`
 		}
+
+		jsTag := `"` + field.JSName + `"`
 		// Note for embedded types field.GoName is "", which produces the code
 		// we want!
-		fmt.Fprintf(w, "\t%s %s `json:%s`\n",
-			field.GoName, field.GoType.Reference(), jsonTag)
+		fmt.Fprintf(w, "\t%s %s `js:%s json:%s`\n",
+			field.GoName, field.GoType.Reference(), jsTag, jsonTag)
 	}
 	fmt.Fprintf(w, "}\n")
 

@@ -13,7 +13,7 @@ type TypeNameQueryResponse struct {
 	//
 	// See UserQueryInput for what stuff is supported.
 	// If query is null, returns the current user.
-	User TypeNameQueryUser `json:"user"`
+	User TypeNameQueryUser `js:"user" json:"user"`
 }
 
 // GetUser returns TypeNameQueryResponse.User, and is useful for accessing the field via an interface.
@@ -24,11 +24,11 @@ func (v *TypeNameQueryResponse) GetUser() TypeNameQueryUser { return v.User }
 //
 // A User is a user!
 type TypeNameQueryUser struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// id is the user's ID.
 	//
 	// It is stable, unique, and opaque, like all good IDs.
-	Id testutil.ID `json:"id"`
+	Id testutil.ID `js:"id" json:"id"`
 }
 
 // GetTypename returns TypeNameQueryUser.Typename, and is useful for accessing the field via an interface.

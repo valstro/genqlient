@@ -15,7 +15,7 @@ type SimpleQueryResponse struct {
 	//
 	// See UserQueryInput for what stuff is supported.
 	// If query is null, returns the current user.
-	User SimpleQueryUser `json:"user"`
+	User SimpleQueryUser `js:"user" json:"user"`
 }
 
 // GetUser returns SimpleQueryResponse.User, and is useful for accessing the field via an interface.
@@ -29,7 +29,7 @@ type SimpleQueryUser struct {
 	// id is the user's ID.
 	//
 	// It is stable, unique, and opaque, like all good IDs.
-	Id testutil.ID `json:"id"`
+	Id testutil.ID `js:"id" json:"id"`
 }
 
 // GetId returns SimpleQueryUser.Id, and is useful for accessing the field via an interface.

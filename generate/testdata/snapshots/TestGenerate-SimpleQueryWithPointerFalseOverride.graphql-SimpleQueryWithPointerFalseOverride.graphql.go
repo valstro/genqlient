@@ -13,7 +13,7 @@ type SimpleQueryWithPointerFalseOverrideResponse struct {
 	//
 	// See UserQueryInput for what stuff is supported.
 	// If query is null, returns the current user.
-	User SimpleQueryWithPointerFalseOverrideUser `json:"user"`
+	User SimpleQueryWithPointerFalseOverrideUser `js:"user" json:"user"`
 }
 
 // GetUser returns SimpleQueryWithPointerFalseOverrideResponse.User, and is useful for accessing the field via an interface.
@@ -29,8 +29,8 @@ type SimpleQueryWithPointerFalseOverrideUser struct {
 	// id is the user's ID.
 	//
 	// It is stable, unique, and opaque, like all good IDs.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetId returns SimpleQueryWithPointerFalseOverrideUser.Id, and is useful for accessing the field via an interface.

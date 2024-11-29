@@ -12,8 +12,8 @@ import (
 
 // InterfaceListFieldResponse is returned by InterfaceListField on success.
 type InterfaceListFieldResponse struct {
-	Root        InterfaceListFieldRootTopic         `json:"root"`
-	WithPointer *InterfaceListFieldWithPointerTopic `json:"withPointer"`
+	Root        InterfaceListFieldRootTopic         `js:"root" json:"root"`
+	WithPointer *InterfaceListFieldWithPointerTopic `js:"withPointer" json:"withPointer"`
 }
 
 // GetRoot returns InterfaceListFieldResponse.Root, and is useful for accessing the field via an interface.
@@ -27,9 +27,9 @@ func (v *InterfaceListFieldResponse) GetWithPointer() *InterfaceListFieldWithPoi
 // InterfaceListFieldRootTopic includes the requested fields of the GraphQL type Topic.
 type InterfaceListFieldRootTopic struct {
 	// ID is documented in the Content interface.
-	Id       testutil.ID                                  `json:"id"`
-	Name     string                                       `json:"name"`
-	Children []InterfaceListFieldRootTopicChildrenContent `json:"-"`
+	Id       testutil.ID                                  `js:"id" json:"id"`
+	Name     string                                       `js:"name" json:"name"`
+	Children []InterfaceListFieldRootTopicChildrenContent `js:"children" json:"-"`
 }
 
 // GetId returns InterfaceListFieldRootTopic.Id, and is useful for accessing the field via an interface.
@@ -126,10 +126,10 @@ func (v *InterfaceListFieldRootTopic) __premarshalJSON() (*__premarshalInterface
 
 // InterfaceListFieldRootTopicChildrenArticle includes the requested fields of the GraphQL type Article.
 type InterfaceListFieldRootTopicChildrenArticle struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceListFieldRootTopicChildrenArticle.Typename, and is useful for accessing the field via an interface.
@@ -240,10 +240,10 @@ func __marshalInterfaceListFieldRootTopicChildrenContent(v *InterfaceListFieldRo
 
 // InterfaceListFieldRootTopicChildrenTopic includes the requested fields of the GraphQL type Topic.
 type InterfaceListFieldRootTopicChildrenTopic struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceListFieldRootTopicChildrenTopic.Typename, and is useful for accessing the field via an interface.
@@ -257,10 +257,10 @@ func (v *InterfaceListFieldRootTopicChildrenTopic) GetName() string { return v.N
 
 // InterfaceListFieldRootTopicChildrenVideo includes the requested fields of the GraphQL type Video.
 type InterfaceListFieldRootTopicChildrenVideo struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceListFieldRootTopicChildrenVideo.Typename, and is useful for accessing the field via an interface.
@@ -275,9 +275,9 @@ func (v *InterfaceListFieldRootTopicChildrenVideo) GetName() string { return v.N
 // InterfaceListFieldWithPointerTopic includes the requested fields of the GraphQL type Topic.
 type InterfaceListFieldWithPointerTopic struct {
 	// ID is documented in the Content interface.
-	Id       testutil.ID                                         `json:"id"`
-	Name     string                                              `json:"name"`
-	Children []InterfaceListFieldWithPointerTopicChildrenContent `json:"-"`
+	Id       testutil.ID                                         `js:"id" json:"id"`
+	Name     string                                              `js:"name" json:"name"`
+	Children []InterfaceListFieldWithPointerTopicChildrenContent `js:"children" json:"-"`
 }
 
 // GetId returns InterfaceListFieldWithPointerTopic.Id, and is useful for accessing the field via an interface.
@@ -374,10 +374,10 @@ func (v *InterfaceListFieldWithPointerTopic) __premarshalJSON() (*__premarshalIn
 
 // InterfaceListFieldWithPointerTopicChildrenArticle includes the requested fields of the GraphQL type Article.
 type InterfaceListFieldWithPointerTopicChildrenArticle struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceListFieldWithPointerTopicChildrenArticle.Typename, and is useful for accessing the field via an interface.
@@ -488,10 +488,10 @@ func __marshalInterfaceListFieldWithPointerTopicChildrenContent(v *InterfaceList
 
 // InterfaceListFieldWithPointerTopicChildrenTopic includes the requested fields of the GraphQL type Topic.
 type InterfaceListFieldWithPointerTopicChildrenTopic struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceListFieldWithPointerTopicChildrenTopic.Typename, and is useful for accessing the field via an interface.
@@ -505,10 +505,10 @@ func (v *InterfaceListFieldWithPointerTopicChildrenTopic) GetName() string { ret
 
 // InterfaceListFieldWithPointerTopicChildrenVideo includes the requested fields of the GraphQL type Video.
 type InterfaceListFieldWithPointerTopicChildrenVideo struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns InterfaceListFieldWithPointerTopicChildrenVideo.Typename, and is useful for accessing the field via an interface.

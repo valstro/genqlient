@@ -13,7 +13,7 @@ import (
 //
 // A User is a user!
 type QueryWithEnumsOtherUser struct {
-	Roles []Role `json:"roles"`
+	Roles []Role `js:"roles" json:"roles"`
 }
 
 // GetRoles returns QueryWithEnumsOtherUser.Roles, and is useful for accessing the field via an interface.
@@ -25,12 +25,12 @@ type QueryWithEnumsResponse struct {
 	//
 	// See UserQueryInput for what stuff is supported.
 	// If query is null, returns the current user.
-	User QueryWithEnumsUser `json:"user"`
+	User QueryWithEnumsUser `js:"user" json:"user"`
 	// user looks up a user by some stuff.
 	//
 	// See UserQueryInput for what stuff is supported.
 	// If query is null, returns the current user.
-	OtherUser QueryWithEnumsOtherUser `json:"otherUser"`
+	OtherUser QueryWithEnumsOtherUser `js:"otherUser" json:"otherUser"`
 }
 
 // GetUser returns QueryWithEnumsResponse.User, and is useful for accessing the field via an interface.
@@ -44,7 +44,7 @@ func (v *QueryWithEnumsResponse) GetOtherUser() QueryWithEnumsOtherUser { return
 //
 // A User is a user!
 type QueryWithEnumsUser struct {
-	Roles []Role `json:"roles"`
+	Roles []Role `js:"roles" json:"roles"`
 }
 
 // GetRoles returns QueryWithEnumsUser.Roles, and is useful for accessing the field via an interface.

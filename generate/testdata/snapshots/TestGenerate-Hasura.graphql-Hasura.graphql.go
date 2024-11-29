@@ -8,10 +8,10 @@ import (
 )
 
 type GetPokemonBoolExp struct {
-	And   []*GetPokemonBoolExp `json:"_and"`
-	Not   *GetPokemonBoolExp   `json:"_not"`
-	Or    []*GetPokemonBoolExp `json:"_or"`
-	Level *IntComparisonExp    `json:"level"`
+	And   []*GetPokemonBoolExp `js:"_and" json:"_and"`
+	Not   *GetPokemonBoolExp   `js:"_not" json:"_not"`
+	Or    []*GetPokemonBoolExp `js:"_or" json:"_or"`
+	Level *IntComparisonExp    `js:"level" json:"level"`
 }
 
 // GetAnd returns GetPokemonBoolExp.And, and is useful for accessing the field via an interface.
@@ -28,22 +28,22 @@ func (v *GetPokemonBoolExp) GetLevel() *IntComparisonExp { return v.Level }
 
 // GetPokemonResponse is returned by GetPokemon on success.
 type GetPokemonResponse struct {
-	GetPokemon []*testutil.Pokemon `json:"getPokemon"`
+	GetPokemon []*testutil.Pokemon `js:"getPokemon" json:"getPokemon"`
 }
 
 // GetGetPokemon returns GetPokemonResponse.GetPokemon, and is useful for accessing the field via an interface.
 func (v *GetPokemonResponse) GetGetPokemon() []*testutil.Pokemon { return v.GetPokemon }
 
 type IntComparisonExp struct {
-	Eq     *int   `json:"_eq"`
-	Gt     *int   `json:"_gt"`
-	Gte    *int   `json:"_gte"`
-	In     []*int `json:"_in"`
-	IsNull *bool  `json:"_isNull"`
-	Lt     *int   `json:"_lt"`
-	Lte    *int   `json:"_lte"`
-	Neq    *int   `json:"_neq"`
-	Nin    []*int `json:"_nin"`
+	Eq     *int   `js:"_eq" json:"_eq"`
+	Gt     *int   `js:"_gt" json:"_gt"`
+	Gte    *int   `js:"_gte" json:"_gte"`
+	In     []*int `js:"_in" json:"_in"`
+	IsNull *bool  `js:"_isNull" json:"_isNull"`
+	Lt     *int   `js:"_lt" json:"_lt"`
+	Lte    *int   `js:"_lte" json:"_lte"`
+	Neq    *int   `js:"_neq" json:"_neq"`
+	Nin    []*int `js:"_nin" json:"_nin"`
 }
 
 // GetEq returns IntComparisonExp.Eq, and is useful for accessing the field via an interface.
@@ -75,7 +75,7 @@ func (v *IntComparisonExp) GetNin() []*int { return v.Nin }
 
 // __GetPokemonInput is used internally by genqlient
 type __GetPokemonInput struct {
-	Where *GetPokemonBoolExp `json:"where"`
+	Where *GetPokemonBoolExp `js:"where" json:"where"`
 }
 
 // GetWhere returns __GetPokemonInput.Where, and is useful for accessing the field via an interface.

@@ -25,6 +25,7 @@ type Config struct {
 	Schema              StringList              `yaml:"schema"`
 	Operations          StringList              `yaml:"operations"`
 	Generated           string                  `yaml:"generated"`
+	InterfaceImpl       InterfaceImpl           `yaml:"interfaceImpl"`
 	Package             string                  `yaml:"package"`
 	ExportOperations    string                  `yaml:"export_operations"`
 	ContextType         string                  `yaml:"context_type"`
@@ -53,6 +54,10 @@ type TypeBinding struct {
 	ExpectExactFields string `yaml:"expect_exact_fields"`
 	Marshaler         string `yaml:"marshaler"`
 	Unmarshaler       string `yaml:"unmarshaler"`
+}
+
+type InterfaceImpl struct {
+	Name string `yaml:"name"`
 }
 
 // A PackageBinding represents a Go package for which genqlient will

@@ -184,6 +184,7 @@ func (g *generator) convertArguments(
 		fields[i] = &goStructField{
 			GoName:      goName,
 			GoType:      goTyp,
+			JSName:      arg.Variable,
 			JSONName:    arg.Variable,
 			GraphQLName: arg.Variable,
 			Omitempty:   options.GetOmitempty(),
@@ -472,6 +473,7 @@ func (g *generator) convertDefinition(
 			goType.Fields[i] = &goStructField{
 				GoName:      goName,
 				GoType:      fieldGoType,
+				JSName:      field.Name,
 				JSONName:    field.Name,
 				GraphQLName: field.Name,
 				Description: field.Description,
@@ -930,6 +932,7 @@ func (g *generator) convertField(
 	return &goStructField{
 		GoName:      goName,
 		GoType:      fieldGoType,
+		JSName:      field.Alias,
 		JSONName:    field.Alias,
 		GraphQLName: field.Name,
 		Description: field.Definition.Description,

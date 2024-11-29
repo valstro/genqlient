@@ -9,7 +9,7 @@ import (
 
 // MutationArgsWithCollidingNamesResponse is returned by MutationArgsWithCollidingNames on success.
 type MutationArgsWithCollidingNamesResponse struct {
-	UpdateUser MutationArgsWithCollidingNamesUpdateUser `json:"updateUser"`
+	UpdateUser MutationArgsWithCollidingNamesUpdateUser `js:"updateUser" json:"updateUser"`
 }
 
 // GetUpdateUser returns MutationArgsWithCollidingNamesResponse.UpdateUser, and is useful for accessing the field via an interface.
@@ -25,7 +25,7 @@ type MutationArgsWithCollidingNamesUpdateUser struct {
 	// id is the user's ID.
 	//
 	// It is stable, unique, and opaque, like all good IDs.
-	Id testutil.ID `json:"id"`
+	Id testutil.ID `js:"id" json:"id"`
 }
 
 // GetId returns MutationArgsWithCollidingNamesUpdateUser.Id, and is useful for accessing the field via an interface.
@@ -33,10 +33,10 @@ func (v *MutationArgsWithCollidingNamesUpdateUser) GetId() testutil.ID { return 
 
 // __MutationArgsWithCollidingNamesInput is used internally by genqlient
 type __MutationArgsWithCollidingNamesInput struct {
-	Data   string `json:"data"`
-	Req    int    `json:"req"`
-	Resp   int    `json:"resp"`
-	Client string `json:"client"`
+	Data   string `js:"data" json:"data"`
+	Req    int    `js:"req" json:"req"`
+	Resp   int    `js:"resp" json:"resp"`
+	Client string `js:"client" json:"client"`
 }
 
 // GetData returns __MutationArgsWithCollidingNamesInput.Data, and is useful for accessing the field via an interface.

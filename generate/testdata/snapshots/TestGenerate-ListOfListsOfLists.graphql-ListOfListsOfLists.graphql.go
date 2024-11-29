@@ -8,7 +8,7 @@ import (
 
 // ListOfListsOfListsResponse is returned by ListOfListsOfLists on success.
 type ListOfListsOfListsResponse struct {
-	ListOfListsOfLists [][][]string `json:"listOfListsOfLists"`
+	ListOfListsOfLists [][][]string `js:"listOfListsOfLists" json:"listOfListsOfLists"`
 }
 
 // GetListOfListsOfLists returns ListOfListsOfListsResponse.ListOfListsOfLists, and is useful for accessing the field via an interface.

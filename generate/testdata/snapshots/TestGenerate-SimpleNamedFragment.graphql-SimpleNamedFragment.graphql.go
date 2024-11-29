@@ -12,10 +12,10 @@ import (
 
 // SimpleNamedFragmentRandomItemArticle includes the requested fields of the GraphQL type Article.
 type SimpleNamedFragmentRandomItemArticle struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns SimpleNamedFragmentRandomItemArticle.Typename, and is useful for accessing the field via an interface.
@@ -130,10 +130,10 @@ func __marshalSimpleNamedFragmentRandomItemContent(v *SimpleNamedFragmentRandomI
 
 // SimpleNamedFragmentRandomItemTopic includes the requested fields of the GraphQL type Topic.
 type SimpleNamedFragmentRandomItemTopic struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id   testutil.ID `json:"id"`
-	Name string      `json:"name"`
+	Id   testutil.ID `js:"id" json:"id"`
+	Name string      `js:"name" json:"name"`
 }
 
 // GetTypename returns SimpleNamedFragmentRandomItemTopic.Typename, and is useful for accessing the field via an interface.
@@ -147,11 +147,11 @@ func (v *SimpleNamedFragmentRandomItemTopic) GetName() string { return v.Name }
 
 // SimpleNamedFragmentRandomItemVideo includes the requested fields of the GraphQL type Video.
 type SimpleNamedFragmentRandomItemVideo struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 	// ID is the identifier of the content.
-	Id          testutil.ID `json:"id"`
-	Name        string      `json:"name"`
-	VideoFields `json:"-"`
+	Id          testutil.ID `js:"id" json:"id"`
+	Name        string      `js:"name" json:"name"`
+	VideoFields `js:"" json:"-"`
 }
 
 // GetTypename returns SimpleNamedFragmentRandomItemVideo.Typename, and is useful for accessing the field via an interface.
@@ -235,7 +235,7 @@ func (v *SimpleNamedFragmentRandomItemVideo) __premarshalJSON() (*__premarshalSi
 
 // SimpleNamedFragmentRandomLeafArticle includes the requested fields of the GraphQL type Article.
 type SimpleNamedFragmentRandomLeafArticle struct {
-	Typename string `json:"__typename"`
+	Typename string `js:"__typename" json:"__typename"`
 }
 
 // GetTypename returns SimpleNamedFragmentRandomLeafArticle.Typename, and is useful for accessing the field via an interface.
@@ -323,8 +323,8 @@ func __marshalSimpleNamedFragmentRandomLeafLeafContent(v *SimpleNamedFragmentRan
 
 // SimpleNamedFragmentRandomLeafVideo includes the requested fields of the GraphQL type Video.
 type SimpleNamedFragmentRandomLeafVideo struct {
-	Typename    string `json:"__typename"`
-	VideoFields `json:"-"`
+	Typename    string `js:"__typename" json:"__typename"`
+	VideoFields `js:"" json:"-"`
 }
 
 // GetTypename returns SimpleNamedFragmentRandomLeafVideo.Typename, and is useful for accessing the field via an interface.
@@ -408,8 +408,8 @@ func (v *SimpleNamedFragmentRandomLeafVideo) __premarshalJSON() (*__premarshalSi
 
 // SimpleNamedFragmentResponse is returned by SimpleNamedFragment on success.
 type SimpleNamedFragmentResponse struct {
-	RandomItem SimpleNamedFragmentRandomItemContent     `json:"-"`
-	RandomLeaf SimpleNamedFragmentRandomLeafLeafContent `json:"-"`
+	RandomItem SimpleNamedFragmentRandomItemContent     `js:"randomItem" json:"-"`
+	RandomLeaf SimpleNamedFragmentRandomLeafLeafContent `js:"randomLeaf" json:"-"`
 }
 
 // GetRandomItem returns SimpleNamedFragmentResponse.RandomItem, and is useful for accessing the field via an interface.
@@ -516,11 +516,11 @@ func (v *SimpleNamedFragmentResponse) __premarshalJSON() (*__premarshalSimpleNam
 // VideoFields includes the GraphQL fields of Video requested by the fragment VideoFields.
 type VideoFields struct {
 	// ID is documented in the Content interface.
-	Id        testutil.ID          `json:"id"`
-	Name      string               `json:"name"`
-	Url       string               `json:"url"`
-	Duration  int                  `json:"duration"`
-	Thumbnail VideoFieldsThumbnail `json:"thumbnail"`
+	Id        testutil.ID          `js:"id" json:"id"`
+	Name      string               `js:"name" json:"name"`
+	Url       string               `js:"url" json:"url"`
+	Duration  int                  `js:"duration" json:"duration"`
+	Thumbnail VideoFieldsThumbnail `js:"thumbnail" json:"thumbnail"`
 }
 
 // GetId returns VideoFields.Id, and is useful for accessing the field via an interface.
@@ -540,7 +540,7 @@ func (v *VideoFields) GetThumbnail() VideoFieldsThumbnail { return v.Thumbnail }
 
 // VideoFieldsThumbnail includes the requested fields of the GraphQL type Thumbnail.
 type VideoFieldsThumbnail struct {
-	Id testutil.ID `json:"id"`
+	Id testutil.ID `js:"id" json:"id"`
 }
 
 // GetId returns VideoFieldsThumbnail.Id, and is useful for accessing the field via an interface.
