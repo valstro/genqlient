@@ -1,10 +1,9 @@
-module github.com/Khan/genqlient
+module github.com/valstro/genqlient
 
 go 1.20
 
 require (
 	github.com/99designs/gqlgen v0.17.44
-	github.com/Khan/genqlient v0.7.0
 	github.com/alexflint/go-arg v1.4.2
 	github.com/bmatcuk/doublestar/v4 v4.6.1
 	github.com/bradleyjkemp/cupaloy/v2 v2.6.0
@@ -27,5 +26,3 @@ require (
 	golang.org/x/mod v0.15.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-replace github.com/Khan/genqlient => github.com/valstro/genqlient v0.0.1

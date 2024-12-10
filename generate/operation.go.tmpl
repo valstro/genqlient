@@ -7,7 +7,7 @@ func {{if .Config.InterfaceImpl.Name}}(i_ {{.Config.InterfaceImpl.Name}}){{else}
     ctx_ {{ref .Config.ContextType}},
     {{end}}
     {{- if and (not .Config.ClientGetter) (not .Config.InterfaceImpl.Name) -}}
-    client_ {{if eq .Type "subscription"}}{{ref "github.com/Khan/genqlient/graphql.WebSocketClient"}}{{else}}{{ref "github.com/Khan/genqlient/graphql.Client"}}{{end}},
+    client_ {{if eq .Type "subscription"}}{{ref "github.com/valstro/genqlient/graphql.WebSocketClient"}}{{else}}{{ref "github.com/valstro/genqlient/graphql.Client"}}{{end}},
     {{end}}
     {{- if .Input -}}
     {{- range .Input.Fields -}}
