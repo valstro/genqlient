@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 
 	"github.com/vektah/gqlparser/v2/gqlerror"
 )
@@ -213,6 +214,7 @@ type Response struct {
 }
 
 func (c *client) MakeRequest(ctx context.Context, req *Request, resp *Response) error {
+	requestTime := time.Now()
 	var httpReq *http.Request
 	var err error
 	if c.method == http.MethodGet {
@@ -244,8 +246,12 @@ func (c *client) MakeRequest(ctx context.Context, req *Request, resp *Response) 
 		}
 		return fmt.Errorf("returned error %v: %s", httpResp.Status, respBody)
 	}
+	responseTime := time.Now()
 
 	err = json.NewDecoder(httpResp.Body).Decode(resp)
+
+	resp.Extensions["httpDetails"] = BuildHTTPDetails(httpReq, httpResp, requestTime, responseTime)
+
 	if err != nil {
 		return err
 	}
