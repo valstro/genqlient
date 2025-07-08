@@ -1,8 +1,6 @@
 module github.com/valstro/genqlient
 
-go 1.22.5
-
-toolchain go1.23.3
+go 1.24.0
 
 require (
 	github.com/99designs/gqlgen v0.17.57

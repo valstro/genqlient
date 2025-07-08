@@ -1,8 +1,6 @@
 module github.com/valstro/genqlient/internal/lint
 
-go 1.22.1
-
-toolchain go1.23.3
+go 1.24.0
 
 // Should match golangci-lint version in .github/workflows/go.yml
 require github.com/golangci/golangci-lint v1.62.2
