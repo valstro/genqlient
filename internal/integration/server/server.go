@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 	"fmt"
+	"net/http"
 	"net/http/httptest"
 	"strconv"
 	"time"
@@ -173,16 +174,67 @@ func (s *subscriptionResolver) Count(ctx context.Context) (<-chan int, error) {
 	return respChan, nil
 }
 
+func (s *subscriptionResolver) CountAuthorized(ctx context.Context) (<-chan int, error) {
+	if getAuthToken(ctx) != "authorized-user-token" {
+		return nil, fmt.Errorf("unauthorized")
+	}
+
+	return s.Count(ctx)
+}
+
+const AuthKey = "authToken"
+
+type (
+	authTokenCtxKey struct{}
+)
+
+func withAuthToken(ctx context.Context, token string) context.Context {
+	return context.WithValue(ctx, authTokenCtxKey{}, token)
+}
+
+func getAuthToken(ctx context.Context) string {
+	if tkn, ok := ctx.Value(authTokenCtxKey{}).(string); ok {
+		return tkn
+	}
+	return ""
+}
+
+func authHeaderMiddleware(handler http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		ctx := r.Context()
+
+		token := r.Header.Get(AuthKey)
+		if token != "" {
+			ctx = withAuthToken(ctx, token)
+		}
+
+		r = r.WithContext(ctx)
+		handler.ServeHTTP(w, r)
+	})
+}
+
 func RunServer() *httptest.Server {
 	gqlgenServer := handler.New(NewExecutableSchema(Config{Resolvers: &resolver{}}))
 	gqlgenServer.AddTransport(transport.POST{})
 	gqlgenServer.AddTransport(transport.GET{})
-	gqlgenServer.AddTransport(transport.Websocket{})
+
+	gqlgenServer.AddTransport(transport.Websocket{
+		InitFunc: func(ctx context.Context, initPayload transport.InitPayload) (context.Context, *transport.InitPayload, error) {
+			if authToken, ok := initPayload[AuthKey].(string); ok && authToken != "" {
+				ctx = withAuthToken(ctx, authToken)
+			}
+			return ctx, &initPayload, nil
+		},
+	})
+
 	gqlgenServer.AroundResponses(func(ctx context.Context, next graphql.ResponseHandler) *graphql.Response {
 		graphql.RegisterExtension(ctx, "foobar", "test")
 		return next(ctx)
 	})
-	return httptest.NewServer(gqlgenServer)
+
+	server := authHeaderMiddleware(gqlgenServer)
+
+	return httptest.NewServer(server)
 }
 
 type (
@@ -202,4 +254,4 @@ func (r *resolver) Subscription() SubscriptionResolver {
 	return &subscriptionResolver{}
 }
 
-//go:generate go run github.com/99designs/gqlgen@v0.17.35
+//go:generate go run github.com/99designs/gqlgen@v0.17.57

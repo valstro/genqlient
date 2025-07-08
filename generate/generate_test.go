@@ -250,9 +250,9 @@ func TestGenerateWithConfig(t *testing.T) {
 			},
 		},
 		{
-			"InterfaceImpl", "", nil, &Config{
-				InterfaceImpl: InterfaceImpl{
-					Name: "graphql.Client",
+			"AutoCamelCase", "", []string{"SnakeCaseFields.graphql", "SnakeCaseType.graphql"}, &Config{
+				Casing: Casing{
+					Default: CasingAutoCamelCase,
 				},
 			},
 		},

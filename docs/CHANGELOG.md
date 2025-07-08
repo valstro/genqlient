@@ -22,15 +22,46 @@ When releasing a new version:
 
 ### Breaking changes:
 
-- omitempty validation:
-  - forbid `omitempty: false` (including implicit behaviour) when using pointer on non-null input field
+### New features:
+
+### Bug fixes:
+
+## v0.8.1
+
+This release fixes a bug introduced in v0.8.0 breaking path resolution on Windows, along with some other small features and bugs.
+
+### New features:
+
+- Added `@genqlient(alias)` directive to customize field names without requiring GraphQL aliases (fixes #367)
+- Added `auto_camel_case` config option to automatically convert snake_case to camelCase in both field names and type names
+
+### Bug fixes:
+
+- fixed path resolution on Windows
+- fixed documentation link in `introduction.md`
+- upgraded version of alexflint/go-arg from 1.4.2 to 1.5.1
+- fixed a typo in the struct + fragment error message
+- avoid error when a subscription message is received without a subscription ID
+- avoid closing subscription channels more than once, which could cause a panic in some cases
+
+## v0.8.0
+
+This release adds support for genqlient subscriptions; see the [documentation](subscriptions.md) for more, and thanks to @matthieu4294967296moineau for the original implementation and @HaraldNordgren for additional testing and improvements.
+
+Note that genqlient now requires Go 1.22.5 or higher, and is tested through Go 1.23.3.
+
+### Breaking changes:
+
+- genqlient now forbids `omitempty: false` (including implicit behaviour) when using pointer on non-null input field.
+- The error text for HTTP errors has changed slightly. If you were parsing it, switch to [`As`-ing to `graphql.HTTPError`](client_config.md#handling-errors).
 
 ### New features:
 
 - genqlient now supports subscriptions; the websocket protocol is by default `graphql-transport-ws` but can be set to another value.  
-  See the [documentation](FAQ.md) for how to `subscribe to an API 'subscription' endpoint`.
+  See the [documentation](subscriptions.md) for more details on how to use subscriptions.
 - genqlient now supports double-star globs for schema and query files; see [`genqlient.yaml` docs](genqlient.yaml) for more.
 - genqlient now generates slices containing all enum values for each enum type.
+- genqlient now returns `Is`/`As`-able errors when the HTTP request returns a non-200 status.
 
 ### Bug fixes:
 

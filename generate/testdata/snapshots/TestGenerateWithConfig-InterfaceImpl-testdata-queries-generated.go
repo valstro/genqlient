@@ -64,4 +64,3 @@ func (i_ graphql.Client) SimpleQuery(
 
 	return data_, err_
 }
-

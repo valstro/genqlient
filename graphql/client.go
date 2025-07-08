@@ -126,24 +126,45 @@ func NewClientUsingGet(endpoint string, httpClient Doer) Client {
 	return newClient(endpoint, httpClient, http.MethodGet)
 }
 
+type WebSocketOption func(*webSocketClient)
+
 // NewClientUsingWebSocket returns a [WebSocketClient] which makes subscription requests
 // to the given endpoint using webSocket.
 //
 // The client does not support queries nor mutations, and will return an error
 // if passed a request that attempts one.
-func NewClientUsingWebSocket(endpoint string, wsDialer Dialer, headers http.Header) WebSocketClient {
-	if headers == nil {
-		headers = http.Header{}
-	}
-	if headers.Get("Sec-WebSocket-Protocol") == "" {
-		headers.Add("Sec-WebSocket-Protocol", "graphql-transport-ws")
-	}
-	return &webSocketClient{
+func NewClientUsingWebSocket(endpoint string, wsDialer Dialer, opts ...WebSocketOption) WebSocketClient {
+	client := &webSocketClient{
 		Dialer:        wsDialer,
-		Header:        headers,
+		header:        http.Header{},
 		errChan:       make(chan error),
 		endpoint:      endpoint,
 		subscriptions: subscriptionMap{map_: make(map[string]subscription)},
+	}
+
+	for _, opt := range opts {
+		opt(client)
+	}
+
+	if client.header.Get("Sec-WebSocket-Protocol") == "" {
+		client.header.Add("Sec-WebSocket-Protocol", "graphql-transport-ws")
+	}
+
+	return client
+}
+
+// WithConnectionParams sets up connection params to be sent to the server
+// during the initial connection handshake.
+func WithConnectionParams(connParams map[string]interface{}) WebSocketOption {
+	return func(ws *webSocketClient) {
+		ws.connParams = connParams
+	}
+}
+
+// WithWebsocketHeader sets a header to be sent to the server.
+func WithWebsocketHeader(header http.Header) WebSocketOption {
+	return func(ws *webSocketClient) {
+		ws.header = header
 	}
 }
 
@@ -197,6 +218,12 @@ type Request struct {
 	OpName string `json:"operationName"`
 }
 
+type BaseResponse[T any] struct {
+	Data       T                      `json:"data"`
+	Extensions map[string]interface{} `json:"extensions,omitempty"`
+	Errors     gqlerror.List          `json:"errors,omitempty"`
+}
+
 // Response that contains data returned by the GraphQL API.
 //
 // Typically, GraphQL APIs will return a JSON payload of the form
@@ -206,11 +233,7 @@ type Request struct {
 // It may additionally contain a key named "extensions", that
 // might hold GraphQL protocol extensions. Extensions and Errors
 // are optional, depending on the values returned by the server.
-type Response struct {
-	Data       interface{}            `json:"data"`
-	Extensions map[string]interface{} `json:"extensions,omitempty"`
-	Errors     gqlerror.List          `json:"errors,omitempty"`
-}
+type Response BaseResponse[any]
 
 func (c *client) MakeRequest(ctx context.Context, req *Request, resp *Response) error {
 	var httpReq *http.Request
@@ -242,7 +265,21 @@ func (c *client) MakeRequest(ctx context.Context, req *Request, resp *Response) 
 		if err != nil {
 			respBody = []byte(fmt.Sprintf("<unreadable: %v>", err))
 		}
-		return fmt.Errorf("returned error %v: %s", httpResp.Status, respBody)
+
+		var gqlResp Response
+		if err = json.Unmarshal(respBody, &gqlResp); err != nil {
+			return &HTTPError{
+				Response: Response{
+					Errors: gqlerror.List{&gqlerror.Error{Message: string(respBody)}},
+				},
+				StatusCode: httpResp.StatusCode,
+			}
+		}
+
+		return &HTTPError{
+			Response:   gqlResp,
+			StatusCode: httpResp.StatusCode,
+		}
 	}
 
 	err = json.NewDecoder(httpResp.Body).Decode(resp)

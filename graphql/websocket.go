@@ -45,13 +45,19 @@ const (
 
 type webSocketClient struct {
 	Dialer        Dialer
-	Header        http.Header
+	header        http.Header
 	endpoint      string
 	conn          WSConn
+	connParams    map[string]interface{}
 	errChan       chan error
 	subscriptions subscriptionMap
 	isClosing     bool
 	sync.Mutex
+}
+
+type webSocketInitMessage struct {
+	Payload map[string]interface{} `json:"payload"`
+	Type    string                 `json:"type"`
 }
 
 type webSocketSendMessage struct {
@@ -67,8 +73,9 @@ type webSocketReceiveMessage struct {
 }
 
 func (w *webSocketClient) sendInit() error {
-	connInitMsg := webSocketSendMessage{
-		Type: webSocketTypeConnInit,
+	connInitMsg := webSocketInitMessage{
+		Type:    webSocketTypeConnInit,
+		Payload: w.connParams,
 	}
 	return w.sendStructAsJSON(connInitMsg)
 }
@@ -129,6 +136,9 @@ func (w *webSocketClient) forwardWebSocketData(message []byte) error {
 	if err != nil {
 		return err
 	}
+	if wsMsg.ID == "" { // e.g. keep-alive messages
+		return nil
+	}
 	sub, ok := w.subscriptions.Read(wsMsg.ID)
 	if !ok {
 		return fmt.Errorf("received message for unknown subscription ID '%s'", wsMsg.ID)
@@ -162,7 +172,7 @@ func checkConnectionAckReceived(message []byte) (bool, error) {
 }
 
 func (w *webSocketClient) Start(ctx context.Context) (errChan chan error, err error) {
-	w.conn, err = w.Dialer.DialContext(ctx, w.endpoint, w.Header)
+	w.conn, err = w.Dialer.DialContext(ctx, w.endpoint, w.header)
 	if err != nil {
 		return nil, err
 	}
