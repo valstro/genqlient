@@ -10,8 +10,14 @@
 // [GitHub]: https://github.com/valstro/genqlient
 package main
 
-import "github.com/valstro/genqlient/generate"
+import (
+	"fmt"
+
+	"github.com/valstro/genqlient/generate"
+)
 
 func main() {
+	fmt.Println("Starting genqlient code generation...")
 	generate.Main()
+	fmt.Println("Code generation completed successfully")
 }
