@@ -93,7 +93,7 @@ func (algo CasingAlgorithm) validate() error {
 // Casing wraps the casing-related options, and is documented further in
 // the [genqlient.yaml docs].
 //
-// [genqlient.yaml docs]: https://github.com/Khan/genqlient/blob/main/docs/genqlient.yaml
+// [genqlient.yaml docs]: https://github.com/valstro/genqlient/blob/main/docs/genqlient.yaml
 type Casing struct {
 	Default  CasingAlgorithm            `yaml:"default"`
 	AllEnums CasingAlgorithm            `yaml:"all_enums"`
