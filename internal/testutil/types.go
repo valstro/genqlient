@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/Khan/genqlient/graphql"
+	"github.com/valstro/genqlient/graphql"
 )
 
 type ID string

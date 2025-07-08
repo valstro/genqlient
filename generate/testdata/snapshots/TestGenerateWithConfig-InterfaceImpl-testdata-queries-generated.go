@@ -43,14 +43,15 @@ query SimpleQuery {
 }
 `
 
-func SimpleQuery(
+func (i_ graphql.Client) SimpleQuery(
 	ctx_ context.Context,
-	client_ graphql.Client,
 ) (data_ *SimpleQueryResponse, err_ error) {
 	req_ := &graphql.Request{
 		OpName: "SimpleQuery",
 		Query:  SimpleQuery_Operation,
 	}
+
+	client_ := i_.client
 
 	data_ = &SimpleQueryResponse{}
 	resp_ := &graphql.Response{Data: data_}
@@ -63,4 +64,3 @@ func SimpleQuery(
 
 	return data_, err_
 }
-

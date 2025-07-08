@@ -6,6 +6,9 @@
     (string) (len=39) "testdata/validConfig/operations.graphql"
   },
   Generated: (string) (len=33) "testdata/validConfig/generated.go",
+  InterfaceImpl: (generate.InterfaceImpl) {
+    Name: (string) ""
+  },
   Package: (string) (len=11) "validConfig",
   ExportOperations: (string) "",
   ContextType: (string) (len=15) "context.Context",
@@ -22,5 +25,5 @@
   StructReferences: (bool) false,
   Extensions: (bool) false,
   baseDir: (string) (len=20) "testdata/validConfig",
-  pkgPath: (string) (len=55) "github.com/Khan/genqlient/generate/testdata/validConfig"
+  pkgPath: (string) (len=58) "github.com/valstro/genqlient/generate/testdata/validConfig"
 })

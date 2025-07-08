@@ -21,10 +21,11 @@ var cfgFilenames = []string{".genqlient.yml", ".genqlient.yaml", "genqlient.yml"
 type Config struct {
 	// The following fields are documented in the [genqlient.yaml docs].
 	//
-	// [genqlient.yaml docs]: https://github.com/Khan/genqlient/blob/main/docs/genqlient.yaml
+	// [genqlient.yaml docs]: https://github.com/valstro/genqlient/blob/main/docs/genqlient.yaml
 	Schema              StringList              `yaml:"schema"`
 	Operations          StringList              `yaml:"operations"`
 	Generated           string                  `yaml:"generated"`
+	InterfaceImpl       InterfaceImpl           `yaml:"interfaceImpl"`
 	Package             string                  `yaml:"package"`
 	ExportOperations    string                  `yaml:"export_operations"`
 	ContextType         string                  `yaml:"context_type"`
@@ -47,7 +48,7 @@ type Config struct {
 // A TypeBinding represents a Go type to which genqlient will bind a particular
 // GraphQL type, and is documented further in the [genqlient.yaml docs].
 //
-// [genqlient.yaml docs]: https://github.com/Khan/genqlient/blob/main/docs/genqlient.yaml
+// [genqlient.yaml docs]: https://github.com/valstro/genqlient/blob/main/docs/genqlient.yaml
 type TypeBinding struct {
 	Type              string `yaml:"type"`
 	ExpectExactFields string `yaml:"expect_exact_fields"`
@@ -55,11 +56,15 @@ type TypeBinding struct {
 	Unmarshaler       string `yaml:"unmarshaler"`
 }
 
+type InterfaceImpl struct {
+	Name string `yaml:"name"`
+}
+
 // A PackageBinding represents a Go package for which genqlient will
 // automatically generate [TypeBinding] values, and is documented further in
 // the [genqlient.yaml docs].
 //
-// [genqlient.yaml docs]: https://github.com/Khan/genqlient/blob/main/docs/genqlient.yaml
+// [genqlient.yaml docs]: https://github.com/valstro/genqlient/blob/main/docs/genqlient.yaml
 type PackageBinding struct {
 	Package string `yaml:"package"`
 }
@@ -67,7 +72,7 @@ type PackageBinding struct {
 // CasingAlgorithm represents a way that genqlient can handle casing, and is
 // documented further in the [genqlient.yaml docs].
 //
-// [genqlient.yaml docs]: https://github.com/Khan/genqlient/blob/main/docs/genqlient.yaml
+// [genqlient.yaml docs]: https://github.com/valstro/genqlient/blob/main/docs/genqlient.yaml
 type CasingAlgorithm string
 
 const (
@@ -243,7 +248,7 @@ func (c *Config) ValidateAndFillDefaults(baseDir string) error {
 		} else {
 			return errorf(nil, "unable to guess package-name: %v"+
 				"\nSet package name in genqlient.yaml"+
-				"\nExample: https://github.com/Khan/genqlient/blob/main/example/genqlient.yaml#L6", err)
+				"\nExample: https://github.com/valstro/genqlient/blob/main/example/genqlient.yaml#L6", err)
 		}
 	} else { // err == nil
 		if c.Package == pkgName || c.Package == "" {
