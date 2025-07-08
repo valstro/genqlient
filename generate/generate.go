@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"go/format"
 	"io"
+	"log"
 	"sort"
 	"strings"
 	"text/template"
@@ -105,7 +106,9 @@ func (g *generator) WriteTypes(w io.Writer) error {
 	// vaguely aligned to the structure of the queries.
 	sort.Strings(names)
 
+	log.Printf("Generating %d types...", len(names))
 	for _, name := range names {
+		log.Printf("  Generating type %s", name)
 		err := g.typeMap[name].WriteDefinition(w, g)
 		if err != nil {
 			return err
@@ -117,6 +120,7 @@ func (g *generator) WriteTypes(w io.Writer) error {
 			return err
 		}
 	}
+	log.Printf("Finished generating types")
 	return nil
 }
 
@@ -158,6 +162,7 @@ func (g *generator) usedFragments(op *ast.OperationDefinition) ast.FragmentDefin
 // requested, to each field of interface type, so we can use the right types
 // when unmarshaling.
 func (g *generator) preprocessQueryDocument(doc *ast.QueryDocument) {
+	log.Printf("Preprocessing query document...")
 	var observers validator.Events
 	// We want to ensure that everywhere you ask for some list of fields (a
 	// selection-set) from an interface (or union) type, you ask for its
@@ -222,6 +227,7 @@ func (g *generator) preprocessQueryDocument(doc *ast.QueryDocument) {
 		}
 	})
 	validator.Walk(g.schema, doc, &observers)
+	log.Printf("Finished preprocessing query document")
 }
 
 // validateOperation checks for a few classes of operations that gqlparser
@@ -248,6 +254,7 @@ func (g *generator) validateOperation(op *ast.OperationDefinition) error {
 // to named fragments, which are added separately by Generate via
 // convertFragment.
 func (g *generator) addOperation(op *ast.OperationDefinition) error {
+	log.Printf("Adding operation %s of type %s...", op.Name, op.Operation)
 	if err := g.validateOperation(op); err != nil {
 		return err
 	}
@@ -309,6 +316,7 @@ func (g *generator) addOperation(op *ast.OperationDefinition) error {
 		Config:         g.Config, // for the convenience of the template
 	})
 
+	log.Printf("Finished adding operation %s", op.Name)
 	return nil
 }
 
@@ -319,18 +327,23 @@ func (g *generator) addOperation(op *ast.OperationDefinition) error {
 // map from filename to the generated file-content (e.g. Go source).  Callers
 // who don't want to manage reading and writing the files should call [Main].
 func Generate(config *Config) (map[string][]byte, error) {
+	log.Printf("Starting code generation...")
 	// Step 1: Read in the schema and operations from the files defined by the
 	// config (and validate the operations against the schema).  This is all
 	// defined in parse.go.
+	log.Printf("Reading schema from %v...", config.Schema)
 	schema, err := getSchema(config.Schema)
 	if err != nil {
 		return nil, err
 	}
+	log.Printf("Successfully read schema")
 
+	log.Printf("Reading and validating queries from %v...", config.Operations)
 	document, err := getAndValidateQueries(config.baseDir, config.Operations, schema)
 	if err != nil {
 		return nil, err
 	}
+	log.Printf("Successfully validated %d operations", len(document.Operations))
 
 	// TODO(benkraft): we could also allow this, and generate an empty file
 	// with just the package-name, if it turns out to be more convenient that
@@ -346,6 +359,7 @@ func Generate(config *Config) (map[string][]byte, error) {
 	// representing Go types (defined in types.go).  The bulk of this logic is
 	// in convert.go, and it additionally updates g.typeMap to include all the
 	// types it needs.
+	log.Printf("Converting operations to Go types...")
 	g := newGenerator(config, schema, document.Fragments)
 	for _, op := range document.Operations {
 		if err = g.addOperation(op); err != nil {
@@ -357,6 +371,7 @@ func Generate(config *Config) (map[string][]byte, error) {
 	//
 	// First, write the types (from g.typeMap) and operations to a temporary
 	// buffer, since they affect what imports we'll put in the header.
+	log.Printf("Writing types and operations...")
 	var bodyBuf bytes.Buffer
 	err = g.WriteTypes(&bodyBuf)
 	if err != nil {
@@ -369,6 +384,7 @@ func Generate(config *Config) (map[string][]byte, error) {
 	})
 
 	for _, operation := range g.Operations {
+		log.Printf("  Writing operation %s...", operation.Name)
 		err = g.render("operation.go.tmpl", &bodyBuf, operation)
 		if err != nil {
 			return nil, err
@@ -377,6 +393,7 @@ func Generate(config *Config) (map[string][]byte, error) {
 
 	// The header also needs to reference some context types, which it does
 	// after it writes the imports, so we need to preregister those imports.
+	log.Printf("Registering context imports...")
 	if g.Config.ContextType != "-" {
 		_, err = g.ref("context.Context")
 		if err != nil {
@@ -391,6 +408,7 @@ func Generate(config *Config) (map[string][]byte, error) {
 	}
 
 	// Now really glue it all together, and format.
+	log.Printf("Assembling final output...")
 	var buf bytes.Buffer
 	err = g.render("header.go.tmpl", &buf, g)
 	if err != nil {
@@ -401,6 +419,7 @@ func Generate(config *Config) (map[string][]byte, error) {
 		return nil, err
 	}
 
+	log.Printf("Formatting generated code...")
 	unformatted := buf.Bytes()
 	formatted, err := format.Source(unformatted)
 	if err != nil {
@@ -416,6 +435,7 @@ func Generate(config *Config) (map[string][]byte, error) {
 	}
 
 	if config.ExportOperations != "" {
+		log.Printf("Exporting operations to %s...", config.ExportOperations)
 		// We use MarshalIndent so that the file is human-readable and
 		// slightly more likely to be git-mergeable (if you check it in).  In
 		// general it's never going to be used anywhere where space is an
@@ -427,5 +447,6 @@ func Generate(config *Config) (map[string][]byte, error) {
 		}
 	}
 
+	log.Printf("Code generation completed successfully")
 	return retval, nil
 }
