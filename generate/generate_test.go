@@ -244,6 +244,26 @@ func TestGenerateWithConfig(t *testing.T) {
 				Enums: map[string]CasingAlgorithm{"Role": CasingRaw},
 			},
 		}},
+		{"OptionalPointerOmitEmpty", "", []string{
+			"InputObject.graphql",
+			"PointersOmitEmpty.graphql",
+			"Omitempty.graphql",
+			"ListInput.graphql",
+		}, &Config{
+			Optional: "pointer_omitempty",
+			Bindings: map[string]*TypeBinding{
+				"Date": {
+					Type:        "time.Time",
+					Marshaler:   "github.com/Khan/genqlient/internal/testutil.MarshalDate",
+					Unmarshaler: "github.com/Khan/genqlient/internal/testutil.UnmarshalDate",
+				},
+				"DateTime": {
+					Type:        "time.Time",
+					Marshaler:   "github.com/Khan/genqlient/internal/testutil.MarshalDate",
+					Unmarshaler: "github.com/Khan/genqlient/internal/testutil.UnmarshalDate",
+				},
+			},
+		}},
 		{
 			"UseStructReference", "", []string{"UseStructReference.graphql"}, &Config{
 				StructReferences: true,
